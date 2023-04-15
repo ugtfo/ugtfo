@@ -1,16 +1,12 @@
 import tkinter as tk
 from tkinter import colorchooser, messagebox
 from PIL import ImageTk, Image
-
-# ------------------------------------------------------------------------------
-# Мои модули
 from config import *
 from algorithms import canonical_ellipse, parameter_ellipse, midpoint_ellipse, bresenham_ellipse,  \
                        canonical_сircle, parameter_circle, midpoint_circle, bresenham_circle_octant, \
                        spectrumCircleBy_algorith, spectrumEllipseBy_algorith, spectrumBy_standart, \
                        add_circle, add_ellipse
 from time_measure import time_comparison, drawAxes
-# --------------------------------------------------------------------------------
 
 root = tk.Tk()
 root.title("Лабораторная работа 4")
@@ -19,8 +15,6 @@ root["bg"] = MAIN_COLOUR
 root.geometry(str(WINDOW_WIDTH) + "x" + str(WINDOW_HEIGHT))
 root.resizable(height=False, width=False)
 
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def clearScreen():
     canvasFiled.delete("all")
     drawAxes(canvasFiled)
@@ -212,9 +206,6 @@ def draw_spectrum(mode):
                         spectrumEllipseBy_algorith(canvasFiled, bresenham_ellipse, xc, yc, ra, rb, step, count, LINE_COLOUR)
                     elif value_alg == 4:
                         spectrumBy_standart(canvasFiled, xc, yc, ra, rb, step, count, LINE_COLOUR)
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# INPUT DATA FRAME
 
 
 dataFrame = tk.Frame(root)
@@ -223,8 +214,6 @@ dataFrame["bg"] = MAIN_FRAME_COLOR
 dataFrame.place(x=BORDERS_SPACE, y=BORDERS_SPACE,
                  width=DATA_FRAME_WIGHT,
                  height=DATA_FRAME_HEIGHT)
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Кнопки для выбора алгоритма
 
 algorithmsLabel = tk.Label(dataFrame, bg=MAIN_COLOUR_LABEL_BG, text="АЛГОРИТМЫ ПОСТРОЕНИЯ",
                      font=("Consolas", 16),
@@ -243,15 +232,11 @@ for value in range(len(algorithmsArr)):
                    ).place(x=10, y=(value + 1) * DATA_FRAME_HEIGHT // COLUMNS, width=DATA_FRAME_WIGHT - 2 * BORDERS_SPACE, height=DATA_FRAME_HEIGHT // COLUMNS)
 
 algorithmsLabel .place(x=0, y=0, width=DATA_FRAME_WIGHT, height=DATA_FRAME_HEIGHT // COLUMNS)
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# ВЫБОР цвета
 chooseColourMainLabel = tk.Label(dataFrame, bg=MAIN_COLOUR_LABEL_BG, text="ВЫБОР ЦВЕТА",
                      font=("Consolas", 16),
                      fg=MAIN_COLOUR_LABEL_TEXT)
 
 size = (DATA_FRAME_WIGHT // 1.5) // 8
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Выбор цвета фона
 
 bgColourLabel = tk.Label(dataFrame, bg=MAIN_FRAME_COLOR, text="Цвет фона:",
                      font=("Consolas", 16),
@@ -296,9 +281,6 @@ greenBg.place(x=(DATA_FRAME_WIGHT // 3 - BORDERS_SPACE) + 5 * size, y=yColourBG 
 darkGreenBg.place(x=(DATA_FRAME_WIGHT // 3 - BORDERS_SPACE) + 6 * size, y=yColourBG * DATA_FRAME_HEIGHT // COLUMNS, width=size, height=DATA_FRAME_HEIGHT // COLUMNS)
 BlackBg.place(x=(DATA_FRAME_WIGHT // 3 - BORDERS_SPACE) + 7 * size, y=yColourBG * DATA_FRAME_HEIGHT // COLUMNS, width=size, height=DATA_FRAME_HEIGHT // COLUMNS)
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# выбор цвета линии
-
 lineColourLabel = tk.Label(dataFrame, bg=MAIN_FRAME_COLOR, text="Цвет линии:",
                      font=("Consolas", 16),
                      fg=MAIN_COLOUR_LABEL_TEXT)
@@ -338,9 +320,6 @@ purpleLine.place(x=(DATA_FRAME_WIGHT // 3 - BORDERS_SPACE) + 4 * size, y=yColour
 greenLine.place(x=(DATA_FRAME_WIGHT // 3 - BORDERS_SPACE) + 5 * size, y=yColourLine * DATA_FRAME_HEIGHT // COLUMNS, width=size, height=DATA_FRAME_HEIGHT // COLUMNS)
 darkGreenLine.place(x=(DATA_FRAME_WIGHT // 3 - BORDERS_SPACE) + 6 * size, y=yColourLine * DATA_FRAME_HEIGHT // COLUMNS, width=size, height=DATA_FRAME_HEIGHT // COLUMNS)
 BlackLine.place(x=(DATA_FRAME_WIGHT // 3 - BORDERS_SPACE) + 7 * size, y=yColourLine * DATA_FRAME_HEIGHT // COLUMNS, width=size, height=DATA_FRAME_HEIGHT // COLUMNS)
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Построение окружности и эллипса
 
 lineMakeLabel = tk.Label(dataFrame, bg=MAIN_COLOUR_LABEL_BG, text="ПОСТРОЕНИЕ ОКРУЖНОСТИ или ЭЛЛИПСА",
                              font=("Consolas", 16),
@@ -397,10 +376,6 @@ widthEllipseLabel.place(x=10 + 2 * DATA_FRAME_WIGHT // 4, y=(makeCircleOREllipse
 rxEntry.place(x=10 + 3 * DATA_FRAME_WIGHT // 4, y=(makeCircleOREllipse + 4) * DATA_FRAME_HEIGHT // COLUMNS, width=DATA_FRAME_WIGHT // 4 - 20, height=DATA_FRAME_HEIGHT // COLUMNS)
 ryEntry.place(x=10 + 3 * DATA_FRAME_WIGHT // 4, y=(makeCircleOREllipse + 5) * DATA_FRAME_HEIGHT // COLUMNS, width=DATA_FRAME_WIGHT // 4 - 20, height=DATA_FRAME_HEIGHT // COLUMNS)
 drawEllipseBtn.place(x=10 + DATA_FRAME_WIGHT // 2, y=(makeCircleOREllipse + 6) * DATA_FRAME_HEIGHT // COLUMNS, width=DATA_FRAME_WIGHT // 2 - 20, height=DATA_FRAME_HEIGHT // COLUMNS)
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Построение спектра
 
 specterMakeLabel = tk.Label(dataFrame, bg=MAIN_COLOUR_LABEL_BG, text="ПОСТРОЕНИЕ СПЕКТРА ОКРУЖНОСТИ или ЭЛЛИПСА",
                              font=("Consolas", 16),
@@ -467,9 +442,6 @@ countEntry.place(x=DATA_FRAME_WIGHT // 3, y=(makeSpecter + 6) * DATA_FRAME_HEIGH
 
 drawSpnCircleBtn.place(x=10, y=(makeSpecter + 7) * DATA_FRAME_HEIGHT // COLUMNS, width=DATA_FRAME_WIGHT // 2 - 30, height=2 * DATA_FRAME_HEIGHT // COLUMNS)
 drawSpnEllipseBtn.place(x=10 + DATA_FRAME_WIGHT // 2, y=(makeSpecter + 7) * DATA_FRAME_HEIGHT // COLUMNS, width=DATA_FRAME_WIGHT // 2 - 20, height=2 * DATA_FRAME_HEIGHT // COLUMNS)
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-# Кнопки сравнения, очистки
 
 TimeBarSpnCircleBtn = tk.Button(dataFrame, bg=CANVAS_COLOUR, fg=MAIN_COLOUR_LABEL_TEXT, text="Сравнение времени\n построение окружности", font=("Consolas", 14),
                                 command=lambda: time_comparison(canvasFiled, LINE_COLOUR, "circle"))
@@ -481,11 +453,8 @@ clearCanvasBtn = tk.Button(dataFrame, bg=CANVAS_COLOUR, fg=MAIN_COLOUR_LABEL_TEX
 TimeBarSpnCircleBtn.place(x=10, y=(makeSpecter + 9) * DATA_FRAME_HEIGHT // COLUMNS, width=DATA_FRAME_WIGHT // 2 - 30, height=2 * DATA_FRAME_HEIGHT // COLUMNS)
 TimeBarEllipseBtn.place(x=10 + DATA_FRAME_WIGHT // 2, y=(makeSpecter + 9) * DATA_FRAME_HEIGHT // COLUMNS, width=DATA_FRAME_WIGHT // 2 - 20, height=2 * DATA_FRAME_HEIGHT // COLUMNS)
 clearCanvasBtn.place(x=40, y=300, height=DATA_FRAME_HEIGHT // COLUMNS)
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# CANVAS FILED FOR DRAWING lines and spectres by algorithms
 canvasFiled = tk.Canvas(root, bg=CANVAS_COLOUR)
 canvasFiled.place(x=WINDOW_WIDTH * DATA_SITUATION + BORDERS_SPACE, y=BORDERS_SPACE, width=CANVAS_WIDTH, height=CANVAS_HEIGHT)
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 xcEntry.insert(0, str(int(CANVAS_WIDTH / 2)))
 ycEntry.insert(0, str(int(CANVAS_HEIGHT / 2)))
